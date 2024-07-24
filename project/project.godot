@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://singletons/globals.gd"
+Lobby="*res://singletons/lobby.gd"

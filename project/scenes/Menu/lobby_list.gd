@@ -77,4 +77,9 @@ func _on_button_pressed() -> void:
 
 func _on_server_button_pressed(server_name: String, server_ip: String, server_port: String) -> void:
 	print("Connecting to server: %s at %s:%s" % [server_name, server_ip, server_port])
+	
+	Globals.server_ip = server_ip
+	Lobby.player_info["name"] = Globals.player_name
+	Globals.player_mode = "client"
+	get_tree().change_scene_to_file("res://scenes/Lobby/Lobby.tscn")
 	# Add your connection logic here
