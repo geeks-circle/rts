@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://bsm6nw3d4g873"]
+[gd_scene load_steps=7 format=4 uid="uid://bsm6nw3d4g873"]
 
 [ext_resource type="Script" path="res://scenes/Game/Player/player.gd" id="1_aaw3i"]
 [ext_resource type="Script" path="res://scenes/Game/Player/player_authority.gd" id="1_h0h2w"]
+[ext_resource type="Script" path="res://scenes/Game/Player/camera_controller_3d.gd" id="3_77qkw"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_lfu2s"]
 
@@ -27,8 +28,14 @@ mesh = SubResource("SphereMesh_lfu2s")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Player"]
 replication_config = SubResource("SceneReplicationConfig_y7g8y")
 
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.706292, 0.707921, 0, -0.707921, 0.706292, 0, 2.71239, 1.73834)
+[node name="CameraController3D" type="Node3D" parent="Player"]
+script = ExtResource("3_77qkw")
+zoom_to_cursor = true
+
+[node name="Elevation" type="Node3D" parent="Player/CameraController3D"]
+
+[node name="Camera3D" type="Camera3D" parent="Player/CameraController3D/Elevation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.49994)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_t2h26")

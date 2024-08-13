@@ -5,13 +5,12 @@ var direction := Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
 	if get_parent().player == multiplayer.get_unique_id():
-		$Camera3D.current = true
-		
+		$CameraController3D.camera.current = true
 		set_process(true)
 		set_physics_process(true)
 	else:
+		$CameraController3D.queue_free()
 		set_process(false)
 		set_physics_process(false)
 
@@ -19,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	direction = Input.get_vector("unit_move_forward", "unit_move_backward", "unit_move_right", "unit_move_left")
 
 func _physics_process(delta):
 
